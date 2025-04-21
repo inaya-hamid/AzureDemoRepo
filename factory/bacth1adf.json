@@ -1,0 +1,9 @@
+{
+	"name": "bacth1adf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ad1456fb-4f9f-4f02-b580-7906c95d9ca3",
+		"tenantId": "f9868f4a-2dca-49d6-9855-96c7f2489e0c"
+	}
+}
