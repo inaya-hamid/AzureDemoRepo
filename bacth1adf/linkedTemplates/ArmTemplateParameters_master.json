@@ -5,6 +5,12 @@
 		"factoryName": {
 			"value": "bacth1adf"
 		},
+		"AzureBlobStorage_ls_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
 		"containerUri": {
 			"value": ""
 		},
