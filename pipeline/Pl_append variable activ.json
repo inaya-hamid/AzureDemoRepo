@@ -1,0 +1,60 @@
+{
+	"name": "Pl_append variable activ",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append 90 to marks",
+				"type": "AppendVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Marks",
+					"value": {
+						"value": "@int(90)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append 90 to marks",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "temp",
+					"value": {
+						"value": "@variables('Marks')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"Marks": {
+				"type": "Array",
+				"defaultValue": [
+					70,
+					40,
+					60,
+					50
+				]
+			},
+			"temp": {
+				"type": "Array",
+				"defaultValue": []
+			}
+		},
+		"annotations": []
+	}
+}
