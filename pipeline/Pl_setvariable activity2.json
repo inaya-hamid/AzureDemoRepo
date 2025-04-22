@@ -1,0 +1,77 @@
+{
+	"name": "Pl_setvariable activity2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set a",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "a",
+					"value": 8
+				}
+			},
+			{
+				"name": "Set b",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "b",
+					"value": 9
+				}
+			},
+			{
+				"name": "Set result",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set a",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set b",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "result",
+					"value": {
+						"value": "@mul(add(variables('a'), variables('b')), add(variables('a'), variables('b')))\n",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"a": {
+				"type": "Integer"
+			},
+			"b": {
+				"type": "Integer"
+			},
+			"result": {
+				"type": "Integer"
+			}
+		},
+		"annotations": []
+	}
+}
