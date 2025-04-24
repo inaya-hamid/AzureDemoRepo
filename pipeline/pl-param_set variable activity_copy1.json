@@ -1,0 +1,91 @@
+{
+	"name": "pl-param_set variable activity_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set length",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "length",
+					"value": {
+						"value": "@pipeline().parameters.param_length",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set breadth",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "breadth",
+					"value": {
+						"value": "@pipeline().parameters.param_breadth",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set area",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set length",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set breadth",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "area",
+					"value": {
+						"value": "@mul(variables('length'),variables('breadth'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"param_length": {
+				"type": "int"
+			},
+			"param_breadth": {
+				"type": "int"
+			}
+		},
+		"variables": {
+			"length": {
+				"type": "Integer"
+			},
+			"breadth": {
+				"type": "Integer"
+			},
+			"area": {
+				"type": "Integer"
+			}
+		},
+		"annotations": []
+	}
+}
