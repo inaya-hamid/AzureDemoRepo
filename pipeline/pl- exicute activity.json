@@ -1,0 +1,44 @@
+{
+	"name": "pl- exicute activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "calling areacalculation",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl-set variable area activity",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "paramat exicute",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl-param_set variable activity_copy1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"param_length": 50,
+						"param_breadth": 50
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
