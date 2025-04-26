@@ -1,0 +1,35 @@
+{
+	"name": "DelimitedText_ds1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"schema": {
+				"type": "string"
+			},
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(dataset().schema,'_',dataset().tablename,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "@concat(substring(utcnow(),0,4),'/',substring(utcnow(),5,2),'/',substring(utcnow(),8,2))",
+				"container": "slr"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
