@@ -1,0 +1,30 @@
+{
+	"name": "SqlServerTable1_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sinkSchema": {
+				"type": "string"
+			},
+			"sinkTablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().sinkSchema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().sinkTablename",
+				"type": "Expression"
+			}
+		}
+	}
+}

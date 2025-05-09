@@ -1,0 +1,104 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "[         { \"sourceschema\":\"dbo\",         \"sourcetablename\":\"emp\",         \"sourcecolumns\":\"id,name,loc,salary\",         \"sinkschema\":\"Innu25\",         \" sinktablename\":\"emp\"},         {\"sourceschema\":\"dbo\",         \"sourcetablename\":\"dept\",         \"sourcecolumns\":\"deptid,deptname\",         \"sinkschema\":\"Innu25\",         \" sinktablename\":\"dept\"} ]",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@concat('select ', item().sourcecolumns,' from ',item().sourceschema,'.',item().sourcetablename)",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "SqlServerSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SqlServerTable_ds",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SqlServerTable1_ds",
+									"type": "DatasetReference",
+									"parameters": {
+										"sinkSchema": {
+											"value": "@item().sinkschema",
+											"type": "Expression"
+										},
+										"sinkTablename": {
+											"value": "@item().sinktablename",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"tablelist": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"sourceschema": "dbo",
+						"sourcetablename": "emp",
+						"sourcecolumns": "id,name,loc,salary",
+						"sinkschema": "Innu25",
+						" sinktablename": "emp"
+					},
+					{
+						"sourceschema": "dbo",
+						"sourcetablename": "dept",
+						"sourcecolumns": "deptid,deptname",
+						"sinkschema": "Innu25",
+						" sinktablename": "dept"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
