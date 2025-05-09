@@ -5,11 +5,18 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Fetching Table List",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@variables('tablelist')",
+						"value": "@activity('Fetching Table List').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -29,7 +36,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat('select ', item().sourcecolumns,' from ',item().sourceschema,'.',item().sourcetablename)",
+										"value": "@concat('select ', item().ColumnName,' from ',item().SourceSchemaName,'.',item().SourceTableName)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -63,11 +70,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"sinkSchema": {
-											"value": "@item().sinkschema",
+											"value": "@item().SinkSchemaName",
 											"type": "Expression"
 										},
 										"sinkTablename": {
-											"value": "@item().sinktablename",
+											"value": "@item().sinkTableName",
 											"type": "Expression"
 										}
 									}
@@ -76,29 +83,33 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Fetching Table List",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SqlServerTable_ds",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
 			}
 		],
-		"variables": {
-			"tablelist": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"sourceschema": "dbo",
-						"sourcetablename": "emp",
-						"sourcecolumns": "id,name,loc,salary",
-						"sinkschema": "Innu25",
-						"sinktablename": "emp"
-					},
-					{
-						"sourceschema": "dbo",
-						"sourcetablename": "dept",
-						"sourcecolumns": "deptid,deptname",
-						"sinkschema": "Innu25",
-						"sinktablename": "dept"
-					}
-				]
-			}
-		},
 		"annotations": []
 	}
 }
