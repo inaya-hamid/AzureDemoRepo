@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "[         { \"sourceschema\":\"dbo\",         \"sourcetablename\":\"emp\",         \"sourcecolumns\":\"id,name,loc,salary\",         \"sinkschema\":\"Innu25\",         \" sinktablename\":\"emp\"},         {\"sourceschema\":\"dbo\",         \"sourcetablename\":\"dept\",         \"sourcecolumns\":\"deptid,deptname\",         \"sinkschema\":\"Innu25\",         \" sinktablename\":\"dept\"} ]",
+						"value": "@variables('tablelist')",
 						"type": "Expression"
 					},
 					"activities": [
@@ -87,14 +87,14 @@
 						"sourcetablename": "emp",
 						"sourcecolumns": "id,name,loc,salary",
 						"sinkschema": "Innu25",
-						" sinktablename": "emp"
+						"sinktablename": "emp"
 					},
 					{
 						"sourceschema": "dbo",
 						"sourcetablename": "dept",
 						"sourcecolumns": "deptid,deptname",
 						"sinkschema": "Innu25",
-						" sinktablename": "dept"
+						"sinktablename": "dept"
 					}
 				]
 			}
