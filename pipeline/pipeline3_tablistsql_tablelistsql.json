@@ -1,5 +1,5 @@
 {
-	"name": "pipeline3",
+	"name": "pipeline3_tablistsql_tablelistsql",
 	"properties": {
 		"activities": [
 			{
@@ -29,7 +29,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat('select','*', 'from',item().SourceSchema,'.',item().SourceTableName)",
+										"value": "@concat('SELECT ', '*', ' FROM ', item().SourceSchema, '.', item().SourceTableName)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -38,7 +38,9 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
 								"translator": {
