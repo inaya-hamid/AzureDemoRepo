@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "WatermarkDatetime",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -33,7 +33,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "WatermarkDatetime",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -57,7 +57,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "@concat(\n    'select * from Products where ModifiedDate > ''',\n    activity('Lookup1').output.firstRow.watermarkdatetime,\n    ''' and ModifiedDate <= ''',\n    activity('Lookup2onpremmax_modifidedate').output.firstRow.maxmodifaieddate,\n    ''''\n)\n",
+							"value": "@concat('select * from Products where ModifiedDate > ''',activity('WatermarkDatetime').output.firstRow.watermarkdatetime,' and ModifiedDate<= ''',activity('Lookup2onpremmax_modifidedate').output.firstRow\n'''')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
