@@ -1,0 +1,27 @@
+{
+	"name": "SqlServerTable5_tds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer_ls1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SinkTableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "dbo",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().SinkTableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
