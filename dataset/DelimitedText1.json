@@ -6,10 +6,10 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"schema": {
+			"SchemaName": {
 				"type": "string"
 			},
-			"tablename": {
+			"TableName": {
 				"type": "string"
 			}
 		},
@@ -19,10 +19,13 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@concat(dataset().schema,'_',dataset().tablename,'.csv')",
+					"value": "@concat(dataset().SchemaName,'_',dataset().TableName,'.csv')",
 					"type": "Expression"
 				},
-				"folderPath": "@concat(   substring(utcNow(),0,4), '/', substring(utcNow(),5,2), '/', substring(utcNow(),8,2))",
+				"folderPath": {
+					"value": "@concat(   substring(utcNow(),0,4), '/', substring(utcNow(),5,2), '/', substring(utcNow(),8,2))",
+					"type": "Expression"
+				},
 				"container": "destination"
 			},
 			"columnDelimiter": ",",
