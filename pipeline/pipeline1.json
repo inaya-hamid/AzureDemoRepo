@@ -81,11 +81,11 @@
 									"referenceName": "DelimitedText1",
 									"type": "DatasetReference",
 									"parameters": {
-										"schema": {
+										"SchemaName": {
 											"value": "@item().schema",
 											"type": "Expression"
 										},
-										"tablename": {
+										"TableName": {
 											"value": "@item().tablename",
 											"type": "Expression"
 										}
