@@ -29,7 +29,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\r\n    'SELECT ',\r\n    item().columnname,\r\n    ' FROM ',\r\n    item().schema,\r\n    '.',\r\n    item().tablename\r\n)",
+										"value": "@concat(\n    'SELECT ',\n    item().columnname,\n    ' FROM ',\n    item().schema,\n    '.',\n    item().tablename\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -61,16 +61,12 @@
 									"referenceName": "SqlServerTable6",
 									"type": "DatasetReference",
 									"parameters": {
-										"schema": {
+										"Schema": {
 											"value": "@item().schema",
 											"type": "Expression"
 										},
-										"tablename": {
+										"TableName": {
 											"value": "@item().tablename",
-											"type": "Expression"
-										},
-										"colomnlist": {
-											"value": "@item().columnname",
 											"type": "Expression"
 										}
 									}
@@ -81,8 +77,8 @@
 									"referenceName": "DelimitedText1",
 									"type": "DatasetReference",
 									"parameters": {
-										"SchemaName": {
-											"value": "@item().schema",
+										"Schema": {
+											"value": "@item().Schema",
 											"type": "Expression"
 										},
 										"TableName": {
@@ -103,13 +99,13 @@
 				"defaultValue": [
 					{
 						"schema": "dbo",
-						"tablename": "customers",
-						"columnname": "id,name,email"
+						"tablename": "departments",
+						"columnname": "dept_id,department_name,location,email"
 					},
 					{
 						"schema": "dbo",
-						"tablename": "orders",
-						"columnname": "O_id,cust_id,price"
+						"tablename": "products",
+						"columnname": "ProductID,ProductName,price,Category,CreatedDate,ModifiedDate"
 					}
 				]
 			}

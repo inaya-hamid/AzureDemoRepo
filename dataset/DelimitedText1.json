@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"SchemaName": {
+			"Schema": {
 				"type": "string"
 			},
 			"TableName": {
@@ -19,7 +19,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@concat(dataset().SchemaName,'_',dataset().TableName,'.csv')",
+					"value": "@concat(dataset().Schema,'_',dataset().TableName,'.csv')",
 					"type": "Expression"
 				},
 				"folderPath": {
