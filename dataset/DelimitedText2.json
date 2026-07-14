@@ -1,0 +1,99 @@
+{
+	"name": "DelimitedText2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "container1"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "Region of residence",
+				"type": "String"
+			},
+			{
+				"name": "Age of Subject",
+				"type": "String"
+			},
+			{
+				"name": "Time spent on Online Class",
+				"type": "String"
+			},
+			{
+				"name": "Rating of Online Class experience",
+				"type": "String"
+			},
+			{
+				"name": "Medium for online class",
+				"type": "String"
+			},
+			{
+				"name": "Time spent on self study",
+				"type": "String"
+			},
+			{
+				"name": "Time spent on fitness",
+				"type": "String"
+			},
+			{
+				"name": "Time spent on sleep",
+				"type": "String"
+			},
+			{
+				"name": "Time spent on social media",
+				"type": "String"
+			},
+			{
+				"name": "Prefered social media platform",
+				"type": "String"
+			},
+			{
+				"name": "Time spent on TV",
+				"type": "String"
+			},
+			{
+				"name": "Number of meals per day",
+				"type": "String"
+			},
+			{
+				"name": "Change in your weight",
+				"type": "String"
+			},
+			{
+				"name": "Health issue during lockdown",
+				"type": "String"
+			},
+			{
+				"name": "Stress busters",
+				"type": "String"
+			},
+			{
+				"name": "Time utilized",
+				"type": "String"
+			},
+			{
+				"name": "Do you find yourself more connected with your family, close friends , relatives  ?",
+				"type": "String"
+			},
+			{
+				"name": "What you miss the most",
+				"type": "String"
+			}
+		]
+	}
+}
