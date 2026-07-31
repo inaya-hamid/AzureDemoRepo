@@ -1,0 +1,15 @@
+{
+	"name": "batch2df",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a72a0c65-a8e7-4a7d-9e3c-6e1ef4d9e486",
+		"tenantId": "ef7ca86c-4bf4-4a63-8b7d-12ddb3ab53a0"
+	}
+}
