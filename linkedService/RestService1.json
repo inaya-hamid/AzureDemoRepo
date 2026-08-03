@@ -5,10 +5,10 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://app.apilayer.com",
+			"url": "https://api.apilayer.net/marketstack/v2/eod?access_key=05641ab5324072fc116e3c163181d035&symbols=AAPL,MSFT",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEYwMURBMkMxLTBFNDMtNEFFMS1CQTA2LUQzNDY4Rjk1NEFCN18xMmVkYjYzOS1iODgwLTQyZjktYWE4MC02NWYwNGNjMDU3YmYiDQp9"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEYwMURBMkMxLTBFNDMtNEFFMS1CQTA2LUQzNDY4Rjk1NEFCN19iNzRkNWQxMC03NTIyLTQyMzEtOTBhOC0wNmJkZDNiMTNkNmYiDQp9"
 		}
 	}
 }
