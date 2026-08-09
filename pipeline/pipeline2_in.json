@@ -132,7 +132,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n    'SELECT * FROM dbo.',\n    item().source_table,\n    ' WHERE ',\n    item().watermark_column,\n    ' > (SELECT last_load_value FROM dbo.watermark_table1 WHERE source_table = ''',\n    item().source_table,\n    ''')'\n)",
+										"value": "@concat(\n    'SELECT * FROM dbo.',\n    item().source_table,\n    ' WHERE ',\n    item().watermark_column,\n    ' > ''',\n    activity('Lookupforgetmetdata').output.value[0].last_load_value,\n    ''' AND ',\n    item().watermark_column,\n    ' <= ''',\n    activity('Lookupgetmaxdate').output.value[0].maxmodifieddate,\n    ''''\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
