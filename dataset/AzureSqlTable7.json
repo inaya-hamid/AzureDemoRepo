@@ -25,7 +25,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "watermarktable1"
+			"table": "watermark_table1"
 		}
 	}
 }

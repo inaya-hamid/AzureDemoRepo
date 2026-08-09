@@ -61,7 +61,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n    'SELECT * FROM dbo.watermark_table1 WHERE source_table = ''',\n    item().source_table,\n    ''''\n)",
+										"value": "@concat(\n    '(SELECT last_load_value FROM dbo.watermark_table1 WHERE source_table = ''',\n    item().source_table,\n    ''')'\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -70,7 +70,8 @@
 								"dataset": {
 									"referenceName": "AzureSqlTable7",
 									"type": "DatasetReference"
-								}
+								},
+								"firstRowOnly": false
 							}
 						},
 						{
@@ -98,7 +99,8 @@
 								"dataset": {
 									"referenceName": "AzureSqlTable8",
 									"type": "DatasetReference"
-								}
+								},
+								"firstRowOnly": false
 							}
 						},
 						{
@@ -130,7 +132,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n    'SELECT * FROM dbo.',\n    item().source_table,\n    ' WHERE ',\n    item().watermark_column,\n    ' > ''',\n    item().last_load_value,\n    ''''\n)",
+										"value": "@concat(\n    'SELECT * FROM dbo.',\n    item().source_table,\n    ' WHERE ',\n    item().watermark_column,\n    ' > (SELECT last_load_value FROM dbo.watermark_table1 WHERE source_table = ''',\n    item().source_table,\n    ''')'\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -160,6 +162,12 @@
 							"inputs": [
 								{
 									"referenceName": "AzureSqlTable9",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText9",
 									"type": "DatasetReference",
 									"parameters": {
 										"source_table": {
@@ -167,12 +175,6 @@
 											"type": "Expression"
 										}
 									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DelimitedText9",
-									"type": "DatasetReference"
 								}
 							]
 						},
@@ -204,7 +206,7 @@
 									{
 										"type": "Query",
 										"text": {
-											"value": "@concat(\n    'UPDATE dbo.watermark_table1 SET last_load_value = ''',\n    activity('Lookupgetmaxdate').output.firstRow.maxmodifieddate,\n    ''' WHERE source_table = ''',\n    item().source_table,\n    ''''\n)",
+											"value": "@concat(\n    'UPDATE dbo.watermark_table1 SET last_load_value = ''',\n    string(activity('Lookupgetmaxdate').output.value[0].maxmodifieddate),\n    ''' WHERE source_table = ''',\n    item().source_table,\n    ''''\n)",
 											"type": "Expression"
 										}
 									}
